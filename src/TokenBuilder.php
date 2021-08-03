@@ -18,7 +18,7 @@ class TokenBuilder
 
     public function __construct()
     {
-        $config = Config::get('agora.id');
+        $config = Config::get('agora');
         $this->appID = $config['id'];
         $this->appCertificate = $config['secret'];
     }
