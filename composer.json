@@ -1,0 +1,24 @@
+{
+    "name": "meitesi\/agora",
+    "description": "Agora php Composer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "luyuan",
+            "email": "758899293@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Meitesi\\Agora\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Meitesi\\Agora\\ServiceProvider"
+            ]
+        }
+    }
+}
