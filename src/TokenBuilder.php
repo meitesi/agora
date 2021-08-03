@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Config;
 
 class TokenBuilder
 {
+
     protected $appID;
     protected $appCertificate;
 
     public function __construct()
     {
-        $config = Config::get('agora');
+        $config = Config::get('agora.id');
         $this->appID = $config['id'];
         $this->appCertificate = $config['secret'];
     }
@@ -34,7 +35,7 @@ class TokenBuilder
         $expireTimeInSeconds = 7200;
         $currentTimestamp = (new DateTime("now", new DateTimeZone('PRC')))->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
-        return RtcTokenBuilder::buildTokenWithUserAccount($this->appID, $this->appCertificate, $channelName, $uid, $role, $privilegeExpiredTs);
+        return RtcTokenBuilder::buildTokenWithUserAccount($this->appID, $this->appCertificate, $channelName, (string) $uid, $role, $privilegeExpiredTs);
     }
     /**
      * 生成RTM_Token
@@ -48,7 +49,7 @@ class TokenBuilder
         $expireTimeInSeconds = 7200;
         $currentTimestamp = (new DateTime("now", new DateTimeZone('PRC')))->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
-        return RtmTokenBuilder::buildToken($this->appID, $this->appCertificate, $uid, $role, $privilegeExpiredTs);
+        return RtmTokenBuilder::buildToken($this->appID, $this->appCertificate, (string) $uid, $role, $privilegeExpiredTs);
     }
 
 }
